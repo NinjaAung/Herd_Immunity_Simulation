@@ -3,9 +3,11 @@
 
 ### macOS ###
 # General
+.vs_code
 .DS_Store
 .AppleDouble
 .LSOverride
+.pyc
 
 # Icon must end with two \r
 Icon
@@ -47,6 +49,7 @@ downloads/
 eggs/
 .eggs/
 lib/
+env/
 lib64/
 parts/
 sdist/
