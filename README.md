@@ -19,10 +19,11 @@ Herd_Immunity_simulation/
         | - answers-ninja.txt: Nyein Chan's opinion
         | - answers-jessica.txt: Jessica's opinion
         | - answers-team.txt: Collective respounce
-    | - logger.py: The main class that runs the entire simulation.
-    | - person.py: Represents the people that make up the population that the virus is spreading through
-    | - simulation.py: Models the properties of the virus we wish to simulate
-    | - virus.py: A helper class for logging all events that happen in the simulation
+    | - Simulation: Folder for the project
+        | - logger.py: The main class that runs the entire simulation.
+        | - person.py: Represents the people that make up the population that the virus is spreading through
+        | - simulation.py: Models the properties of the virus we wish to simulate
+        | - virus.py: A helper class for logging all events that happen in the simulation
 ```
 
 ## Goal
@@ -43,7 +44,7 @@ During every time step of the simulation, every sick person should randomly inte
 ## How To use
 1.  be in the root directory of the simulation
     ```
-    cd ./herd_immunity_simulation
+    cd ./herd_immunity_simulation/Simulation
     ```
 2. run python 3 with following arguments(Optional: People Intially Infected, defaulted: 1)
     ```
