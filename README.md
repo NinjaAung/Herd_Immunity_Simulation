@@ -3,9 +3,7 @@ Basic simulation of the of herd immunity by modeling how a virus moves through a
 ### Information
 Various Virus Data, Mortality Rate and Reproductive Rate derived from the [Gurdian](https://tinyurl.com/gllzupc) and [Microbe Scope](https://tinyurl.com/y67ta2mp)
 
-![Micro Scope Data](img/Microbe_Scope_Data.png)
-
-## Micro Scope Data
+### Micro Scope Data
 ![Micro Scope Data](img/Microbe_Scope_Data.png)
 
 
@@ -64,6 +62,6 @@ During every time step of the simulation, every sick person should randomly inte
 
 ## Division of Labor
 [Trello Board](https://tinyurl.com/y5oobuv8)
-### Arthurs
+### Authors
 - [Jessica Trinh](https://github.com/ellojess)
 - [Nyein Chan Aung](https://github.com/NinjaAung)
