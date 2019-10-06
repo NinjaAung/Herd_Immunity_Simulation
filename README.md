@@ -3,9 +3,11 @@ Basic simulation of the of herd immunity by modeling how a virus moves through a
 ### Information
 Various Virus Data, Mortality Rate and Reproductive Rate derived from the [Gurdian](https://tinyurl.com/gllzupc) and [Microbe Scope](https://tinyurl.com/y67ta2mp)
 
+
+## Micro Scope Data
 ![Micro Scope Data](img/Microbe_Scope_Data.png)
 
-### Micro Scope Data
+
 [Developer Version Of Micro Scope Data](https://tinyurl.com/yywb2mfz)
 
 ## File Structure
