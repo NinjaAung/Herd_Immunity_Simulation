@@ -3,10 +3,7 @@ Basic simulation of the of herd immunity by modeling how a virus moves through a
 ### Information
 Various Virus Data, Mortality Rate and Reproductive Rate derived from the [Gurdian](https://tinyurl.com/gllzupc) and [Microbe Scope](https://tinyurl.com/y67ta2mp)
 
-<<<<<<< HEAD
 ![Micro Scope Data](img/Microbe_Scope_Data.png)
-=======
->>>>>>> 02a1e85750efd91aa5d93559c44a63e900e87741
 
 ## Micro Scope Data
 ![Micro Scope Data](img/Microbe_Scope_Data.png)
@@ -19,7 +16,9 @@ Various Virus Data, Mortality Rate and Reproductive Rate derived from the [Gurdi
 Herd_Immunity_simulation/
     | - img/: folder fo the screenshots
     | - Q&A: Folder for Questions and Answers
-        | - answers.txt: answers
+        | - answers-ninja.txt: Nyein Chan's opinion
+        | - answers-jessica.txt: Jessica's opinion
+        | - answers-team.txt: Collective respounce
     | - logger.py: The main class that runs the entire simulation.
     | - person.py: Represents the people that make up the population that the virus is spreading through
     | - simulation.py: Models the properties of the virus we wish to simulate
