@@ -48,7 +48,7 @@ During every time step of the simulation, every sick person should randomly inte
     ```
     python3 simulation.py {population size} {vacc_percentage} {virus_name} {mortality_rate} {repro_rate} {number of people initially infected}
     ```
-    Ex.
+    ex.
     ```
     python3 simulation.py 100000 0.90 Ebola 0.70 0.25 10
     ```
