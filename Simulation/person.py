@@ -66,9 +66,9 @@ def test_sick_person_instantiation():
     assert person.infection is virus
 
 def test_did_survive_infection():
-    # TODO: Create a Virus object to give a Person object an infection
+    # Virus object to give a Person object an infection
     virus = Virus("Dysentery", 0.7, 0.2)
-    # TODO: Create a Person object and give them the virus infection
+    # Person object and give them the virus infection
     person = Person(4, False, virus)
 
     # Resolve whether the Person survives the infection or not
