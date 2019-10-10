@@ -108,7 +108,24 @@ class Simulation(object):
             3. Otherwise call simulation.interaction(person, random_person) and
                 increment interaction counter by 1.
             '''
-        # TODO: Finish this method.
+        total_inf = self.total_infected_list()
+        print(len(total_inf))
+        for person in total_inf:
+            # print(len(total_inf))
+            if person.is_alive == True and person.infection:
+                interactions = 0
+                while interactions < 100:
+                    random_person = random.choice(self.population)
+
+                    if random_person._id != person._id and random_person.is_alive == True:
+                        self.interaction(person, random_person)
+                        interactions += 1
+            self.did_survive(person)
+                        
+        
+        self._infect_newly_infected()
+
+        self.logger.log_time_step(self.time_step_counter, self)
         pass
 
     def interaction(self, person, random_person):
