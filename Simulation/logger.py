@@ -47,10 +47,20 @@ class Logger(object):
         or the other edge cases:
             "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
-        # TODO: Finish this method. Think about how the booleans passed (or not passed)
-        # represent all the possible edge cases. Use the values passed along with each person,
-        # along with whether they are sick or vaccinated when they interact to determine
-        # exactly what happened in the interaction and create a String, and write to your logfile.
+        with open(self.file_name, 'a') as f:
+            if did_infect and not random_person_vacc and not random_person_sick:
+                log_file = f"[Success]: {person._id} infected {random_person._id}.\n"
+                f.write(log_file)
+            elif not did_infect:
+                if random_person_vacc:
+                    log_file = f"[Fail]: {person._id} : {random_person._id} is vaccinated\n"
+                    f.write(log_file)
+                elif random_person_sick:
+                    log_file = f"[Fail]: {person._id} : {random_person._id} is sick\n"
+                    f.write(log_file)
+                else:
+                    log_file = f"[FAIL]: {person._id} : {random_person._id} resisted virus\n"
+                    f.write(log_file)
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -58,10 +68,6 @@ class Logger(object):
         The format of the log should be:
             "{person.ID} died from infection\n" or "{person.ID} survived infection.\n"
         '''
-        # TODO: Finish this method. If the person survives, did_die_from_infection
-        # should be False.  Otherwise, did_die_from_infection should be True.
-        # Append the results of the infection to the logfile
-        pass
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
@@ -75,7 +81,3 @@ class Logger(object):
         The format of this log should be:
             "Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
         '''
-        # TODO: Finish this method. This method should log when a time step ends, and a
-        # new one begins.
-        # NOTE: Here is an opportunity for a stretch challenge!
-        pass
