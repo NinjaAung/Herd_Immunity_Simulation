@@ -65,7 +65,26 @@ class Simulation(object):
         # Use the attributes created in the init method to create a population that has
         # the correct intial vaccination percentage and initial infected.
 
-        pass
+        # this method should be called when the simulation begins, to create the population that will be used
+        while len(self.population) < self.pop_size:
+
+            vaccinated_pop = int(self.pop_size * self.vacc_percentage)
+
+            vaccinated_count = 0
+            infected_count = 0
+
+            if vaccinated_count < vaccinated_pop:
+                person = Person(self.next_person_id, True, None)
+                vaccinated_count += 1
+            elif infected_count < self.initial_infected:
+                person = Person(self.next_person_id, False, self.virus.name)
+                infected_count += 1
+            else:
+                person = Person(self.next_person_id, False, None)
+
+            self.population.append(person)
+            self.next_person_id += 1
+
 
     def _simulation_should_continue(self):
         ''' The simulation should only end if the entire population is dead
@@ -74,8 +93,7 @@ class Simulation(object):
                 bool: True for simulation should continue, False if it should end.
         '''
         # TODO: Complete this helper method.  Returns a Boolean.
-        if pop_size == 0 or vacc_percentage == 1:
-            return False
+
 
     def run(self):
         ''' This method should run the simulation until all requirements for ending
