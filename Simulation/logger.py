@@ -1,3 +1,9 @@
+import os
+from person import Person
+from virus import Virus
+
+
+
 class Logger(object):
     ''' Utility class responsible for logging all interactions during the simulation. '''
     # TODO: Write a test suite for this class to make sure each method is working
@@ -28,7 +34,8 @@ class Logger(object):
             Reproduction Rate: {basic_repro_num*100}%
                     \n""")
         log_file.write("_"*45 + "\n")
-        log_file.close()
+        log_file.close() 
+
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
         pass
@@ -46,7 +53,6 @@ class Logger(object):
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
