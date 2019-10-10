@@ -23,16 +23,16 @@ class Logger(object):
         '''
 
         with open(self.file_name, 'w') as f:
-                log_file = f"""
+                log_file_msg = f"""
                 ___MetaData___
                 Population Size: {pop_size}    
                 Vaccination Percentage: {vacc_percentage*100}%   
                 Virus: {virus_name}   
                 Mortality Rate: {mortality_rate*100}%    
-                Basic Reproduction Number: {basic_repro_num*100}%
-                _______________\n
+                Basic Reproduction Number: {basic_repro_num*100}%\n
+                ____Simulation____
                 """
-                f.write(log_file)
+                f.write(log_file_msg)
 
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
@@ -47,19 +47,20 @@ class Logger(object):
             "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
         with open(self.file_name, 'a') as f:
+            
             if did_infect and not random_person_vacc and not random_person_sick:
-                log_file = f"[Success]: {person._id} infected {random_person._id}.\n"
-                f.write(log_file)
+                log_file_msg = f"[Success]: {person._id} infected {random_person._id}.\n"
+                f.write(log_file_msg)
             elif not did_infect:
                 if random_person_vacc:
-                    log_file = f"[Fail]: {person._id} : {random_person._id} is vaccinated\n"
-                    f.write(log_file)
+                    log_file_msg = f"[Fail]: {person._id} : {random_person._id} is vaccinated\n"
+                    f.write(log_file_msg)
                 elif random_person_sick:
-                    log_file = f"[Fail]: {person._id} : {random_person._id} is sick\n"
-                    f.write(log_file)
+                    log_file_msg = f"[Fail]: {person._id} : {random_person._id} is sick\n"
+                    f.write(log_file_msg)
                 else:
-                    log_file = f"[FAIL]: {person._id} : {random_person._id} resisted virus\n"
-                    f.write(log_file)
+                    log_file_msg = f"[FAIL]: {person._id} : {random_person._id} resisted virus\n"
+                    f.write(log_file_msg)
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -69,11 +70,11 @@ class Logger(object):
         '''
         with open(self.file_name, 'a') as f:
             if did_die_from_infection:
-                log_file = f"[Survived]: {person._id}\n"
-                f.write(log_file)
+                log_file_msg = f"[Survived]: {person._id}\n"
+                f.write(log_file_msg)
             elif not did_die_from_infection:
-                log_file = f"[Dead]: {person._id}\n"
-                f.write(log_file)
+                log_file_msg = f"[Dead]: {person._id}\n"
+                f.write(log_file_msg)
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
