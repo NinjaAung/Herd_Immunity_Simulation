@@ -16,10 +16,19 @@ class Logger(object):
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
-        # TODO: Finish this method. This line of metadata should be tab-delimited
-        # it should create the text file that we will store all logs in.
-        # TIP: Use 'w' mode when you open the file. For all other methods, use
-        # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
+        log_file = open(self.file_name, 'w+')
+        log_file.write("_"*13 + "Metadata_File" + "_"*13 + "\n")
+        log_file.write(f"{pop_size}\t {vacc_percentage}\t {virus_name}\t {mortality_rate}\t \n")
+        log_file.write("_"*13 + "Statisics"+ "_"*17 + "\n")
+        log_file.write(f"""\n
+                     Pop Size: {pop_size},
+                   Vaccinated: {vacc_percentage*100}%,
+                        Virus: {virus_name},
+               Mortality Rate: {mortality_rate*100}%,
+            Reproduction Rate: {basic_repro_num*100}%
+                    \n""")
+        log_file.write("_"*45 + "\n")
+        log_file.close()
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
         pass
