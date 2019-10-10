@@ -3,7 +3,6 @@ from person import Person
 from virus import Virus
 
 
-
 class Logger(object):
     ''' Utility class responsible for logging all interactions during the simulation. '''
     # TODO: Write a test suite for this class to make sure each method is working
@@ -22,19 +21,18 @@ class Logger(object):
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
-        log_file = open(self.file_name, 'w+')
-        log_file.write("_"*13 + "Metadata_File" + "_"*13 + "\n")
-        log_file.write(f"{pop_size}\t {vacc_percentage}\t {virus_name}\t {mortality_rate}\t \n")
-        log_file.write("_"*13 + "Statisics"+ "_"*17 + "\n")
-        log_file.write(f"""\n
-                     Pop Size: {pop_size},
-                   Vaccinated: {vacc_percentage*100}%,
-                        Virus: {virus_name},
-               Mortality Rate: {mortality_rate*100}%,
-            Reproduction Rate: {basic_repro_num*100}%
-                    \n""")
-        log_file.write("_"*45 + "\n")
-        log_file.close() 
+
+        with open(self.file_name, 'w') as f:
+                log_file = f"""
+                ___MetaData___
+                Population Size: {pop_size}    
+                Vaccination Percentage: {vacc_percentage*100}%   
+                Virus: {virus_name}   
+                Mortality Rate: {mortality_rate*100}%    
+                Basic Reproduction Number: {basic_repro_num*100}%
+                _______________\n
+                """
+                f.write(log_file)
 
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
