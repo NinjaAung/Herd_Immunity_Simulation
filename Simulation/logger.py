@@ -36,7 +36,6 @@ class Logger(object):
 
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
 
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
@@ -68,6 +67,13 @@ class Logger(object):
         The format of the log should be:
             "{person.ID} died from infection\n" or "{person.ID} survived infection.\n"
         '''
+        with open(self.file_name, 'a') as f:
+            if did_die_from_infection:
+                log_file = f"[Survived]: {person._id}\n"
+                f.write(log_file)
+            elif not did_die_from_infection:
+                log_file = f"[Dead]: {person._id}\n"
+                f.write(log_file)
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
