@@ -87,3 +87,6 @@ class Logger(object):
         The format of this log should be:
             "Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
         '''
+        with open(self.file_name, 'a') as f:
+            time_step_msg = f"Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
+            f.write(time_step_msg)
