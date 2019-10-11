@@ -93,6 +93,12 @@ class Simulation(object):
         '''
         # TODO: Complete this helper method.  Returns a Boolean.
 
+        if self.total_vacc + self.total_dead >= self.pop_size_init:
+            should_continue = False
+        else:
+            should_continue = True
+        return should_continue
+
 
     def run(self):
         ''' This method should run the simulation until all requirements for ending
@@ -105,20 +111,25 @@ class Simulation(object):
         # TODO: Keep track of the number of time steps that have passed.
         # HINT: You may want to call the logger's log_time_step() method at the end of each time step.
         # TODO: Set this variable using a helper
-        time_step_counter = 0
-        should_continue = None
-
-        while should_continue:
-        # TODO: for every iteration of this loop, call self.time_step() to compute another
+         # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.
-            pass
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage,
+                                        self.virus.name, self.virus.mortality_rate,
+                                        self.virus.repro_rate)
 
-        print(f'The simulation has ended after {time_step_counter} turns.')
-        pass
+        should_continue = self._simulation_should_continue()
+        while should_continue:
+            self.time_step_counter += 1
+            self.time_step()
+            should_continue = self._simulation_should_continue()
 
-    def time_step(self):
+        return print(f'The simulation has ended after {self.time_step_counter} turns.')
+
+     def time_step(self):
         ''' This method should contain all the logic for computing one time step
         in the simulation.
+        At the end of a time step, an infected person will either die of the infection or get better.
+        The chance they will die is the percentage chance stored in mortality_rate.
         This includes:
             1. 100 total interactions with a randon person for each infected person
                 in the population
@@ -145,7 +156,6 @@ class Simulation(object):
         self._infect_newly_infected()
 
         self.logger.log_time_step(self.time_step_counter, self)
-        pass
 
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an
