@@ -4,11 +4,13 @@ from virus import Virus
 from uuid import uuid4
 import random
 import sys
+
 random.seed(42)
 
 class Simulation(object):
     ''' Main class that will run the herd immunity simulation program.
     Expects initialization parameters passed as command line arguments when file is run.
+    self.
     Simulates the spread of a virus through a given population.  The percentage of the
     population that are vaccinated, the size of the population, and the amount of initially
     infected people in a population are all variables that can be set when the program is run.
@@ -56,6 +58,7 @@ class Simulation(object):
         self.logger = Logger(self.file_name)
         self.time_step_counter = 0
         self.total_inf = []
+
 
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
@@ -125,7 +128,8 @@ class Simulation(object):
 
         return print(f'The simulation has ended after {self.time_step_counter} turns.')
 
-     def time_step(self):
+
+    def time_step(self):
         ''' This method should contain all the logic for computing one time step
         in the simulation.
         At the end of a time step, an infected person will either die of the infection or get better.
@@ -156,6 +160,8 @@ class Simulation(object):
         self._infect_newly_infected()
 
         self.logger.log_time_step(self.time_step_counter, self)
+
+
 
     def total_infected_list(self):
         inf = []
@@ -213,21 +219,24 @@ class Simulation(object):
         self.newly_infected = []
 
 
+
+
+
 if __name__ == "__main__":
     params = sys.argv[1:]
-    pop_size = int(params[0])
-    vacc_percentage = float(params[1])
-    virus_name = str(params[2])
+    name = str(params[2])
+    repro_rate = float(params[1])
     mortality_rate = float(params[3])
-    repro_rate = float(params[4])
 
+    pop_size = int(params[0])
+    vacc_percentage = float(params[4])
 
     if len(params) == 6:
         initial_infected = int(params[5])
     else:
         initial_infected = 1
-
-    virus = Virus(virus_name, repro_rate, mortality_rate)
-    sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
+    virus = Virus(name, repro_rate, mortality_rate)
+    sim = Simulation(pop_size, vacc_percentage, virus, initial_infected)
+    # sim.test_time_step()
 
     sim.run()
