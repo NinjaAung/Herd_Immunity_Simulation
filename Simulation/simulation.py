@@ -1,9 +1,10 @@
-import random, sys
-random.seed(42)
 from person import Person
 from logger import Logger
 from virus import Virus
-
+from uuid import uuid4
+import random
+import sys
+random.seed(42)
 
 class Simulation(object):
     ''' Main class that will run the herd immunity simulation program.
@@ -34,19 +35,27 @@ class Simulation(object):
         # TODO: Store each newly infected person's ID in newly_infected attribute.
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
-        self.logger = Logger
-        self.population = [] # List of Person objects
-        self.pop_size = pop_size # Int
-        self.next_person_id = 0 # Int
-        self.virus = virus # Virus object
-        self.initial_infected = initial_infected # Int
-        self.total_infected = 0 # Int
-        self.current_infected = 0 # Int
-        self.vacc_percentage = vacc_percentage # float between 0 and 1
-        self.total_dead = 0 # Int
-        self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
-            virus_name, pop_size, vacc_percentage, initial_infected)
+        self.infected_pop = []
+        self.dead = []
+        self.vacc_pop = []
+        self.norm_pop = []
+        self.pop_size = pop_size 
+        self.pop_size_init = pop_size
+        self.next_person_id = 0
+        self.virus = virus
+        self.initial_infected = initial_infected
+        self.total_infected = initial_infected
+        self.current_infected = self.initial_infected
+        self.vacc_percentage = vacc_percentage
+        self.total_vacc = int(vacc_percentage*self.pop_size)
+        self.total_dead = 0
+        self.population = self._create_population(initial_infected)
+        self.file_name = f"{self.virus.name}_simulation_pop_{pop_size}_vp_{vacc_percentage}_infected_{initial_infected}.txt"
         self.newly_infected = []
+        self._infect_newly_infected()
+        self.logger = Logger(self.file_name)
+        self.time_step_counter = 0
+        self.total_inf = []
 
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
@@ -68,7 +77,7 @@ class Simulation(object):
         # this method should be called when the simulation begins, to create the population that will be used
         while len(self.population) < self.pop_size:
 
-            vaccinated_pop = int(self.pop_size * self.vacc_percentage)
+            vaccinated_popo = int(self.pop_size * self.vacc_percentage)
 
             vaccinated_count = 0
             infected_count = 0
