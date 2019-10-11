@@ -182,18 +182,14 @@ class Simulation(object):
             self.logger.log_interaction(person, random_person, True, False, False)
 
 
-    def _infect_newly_infected(self):
+     def _infect_newly_infected(self):
         ''' This method should iterate through the list of ._id stored in self.newly_infected
         and update each Person object with the disease. '''
-        # TODO: Call this method at the end of every time step and infect each Person.
-        # TODO: Once you have iterated through the entire list of self.newly_infected, remember
-        # to reset self.newly_infected back to an empty list.
 
         for person in self.population:
             if person._id in self.newly_infected:
                 person.infection = self.virus
 
-        #reset newly_infected to an empty array
         self.newly_infected = []
 
 
