@@ -39,7 +39,7 @@ class Simulation(object):
         self.dead = []
         self.vacc_pop = []
         self.norm_pop = []
-        self.pop_size = pop_size 
+        self.pop_size = pop_size
         self.pop_size_init = pop_size
         self.next_person_id = 0
         self.virus = virus
@@ -65,34 +65,24 @@ class Simulation(object):
             Returns:
                 list: A list of Person objects.
         '''
-        # TODO: Finish this method!  This method should be called when the simulation
-        # begins, to create the population that will be used. This method should return
-        # an array filled with Person objects that matches the specifications of the
-        # simulation (correct number of people in the population, correct percentage of
-        # people vaccinated, correct number of initially infected people).
 
-        # Use the attributes created in the init method to create a population that has
-        # the correct intial vaccination percentage and initial infected.
+        population = []
+        for _ in range(initial_infected):
+            infected_person = Person(uuid4(), False, self.virus)
+            population.append(infected_person)
+            self.infected_pop.append(infected_person)
 
-        # this method should be called when the simulation begins, to create the population that will be used
-        while len(self.population) < self.pop_size:
+        for _ in range(self.total_vacc):
+            vacc_person = Person(uuid4(), True)
+            population.append(vacc_person)
+            self.vacc_pop.append(vacc_person)
 
-            vaccinated_popo = int(self.pop_size * self.vacc_percentage)
+        for _ in range(self.pop_size - self.total_vacc - initial_infected):
+            norm_person = Person(uuid4(), False)
+            self.norm_pop.append(norm_person)
+            population.append(norm_person)
 
-            vaccinated_count = 0
-            infected_count = 0
-
-            if vaccinated_count < vaccinated_pop:
-                person = Person(self.next_person_id, True, None)
-                vaccinated_count += 1
-            elif infected_count < self.initial_infected:
-                person = Person(self.next_person_id, False, self.virus.name)
-                infected_count += 1
-            else:
-                person = Person(self.next_person_id, False, None)
-
-            self.population.append(person)
-            self.next_person_id += 1
+        return population
 
 
     def _simulation_should_continue(self):
