@@ -25,13 +25,12 @@ class Logger(object):
         with open(self.file_name, 'w') as f:
                 log_file_msg = f"""
                 ___MetaData___
-                Population Size: {pop_size}    
-                Vaccination Percentage: {vacc_percentage*100}%   
-                Virus: {virus_name}   
-                Mortality Rate: {mortality_rate*100}%    
+                Population Size: {pop_size}
+                Vaccination Percentage: {vacc_percentage*100}%
+                Virus: {virus_name}
+                Mortality Rate: {mortality_rate*100}%
                 Basic Reproduction Number: {basic_repro_num*100}%\n
-                ____Simulation____
-                """
+                ____Simulation____\n"""
                 f.write(log_file_msg)
 
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
@@ -47,19 +46,19 @@ class Logger(object):
             "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
         with open(self.file_name, 'a') as f:
-            
+
             if did_infect and not random_person_vacc and not random_person_sick:
-                log_file_msg = f"[Success]: {person._id} infected {random_person._id}.\n"
+                log_file_msg = f"\t[Success]: {person._id} infected {random_person._id}.\n"
                 f.write(log_file_msg)
             elif not did_infect:
                 if random_person_vacc:
-                    log_file_msg = f"[Fail]: {person._id} : {random_person._id} is vaccinated\n"
+                    log_file_msg = f"\t[Fail]: {person._id} : {random_person._id} is [VACCINATED]\n"
                     f.write(log_file_msg)
                 elif random_person_sick:
-                    log_file_msg = f"[Fail]: {person._id} : {random_person._id} is sick\n"
+                    log_file_msg = f"\t[Fail]: {person._id} : {random_person._id} is [SICK]\n"
                     f.write(log_file_msg)
                 else:
-                    log_file_msg = f"[FAIL]: {person._id} : {random_person._id} resisted virus\n"
+                    log_file_msg = f"\t[FAIL]: {person._id} : {random_person._id} resisted virus [RESITANCE]\n"
                     f.write(log_file_msg)
 
     def log_infection_survival(self, person, did_die_from_infection):
