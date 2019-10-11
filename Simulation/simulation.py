@@ -181,6 +181,17 @@ class Simulation(object):
         elif random_person.infection != None:
             self.logger.log_interaction(person, random_person, True, False, False)
 
+     def did_survive(self, person):
+
+        is_alive = person.did_survive_infection()
+        if is_alive:
+            self.total_vacc += 1
+        else:
+            self.total_dead += 1
+            self.dead.append(person)
+        self.current_infected -= 1
+        self.logger.log_infection_survival(person, is_alive)
+
 
      def _infect_newly_infected(self):
         ''' This method should iterate through the list of ._id stored in self.newly_infected
