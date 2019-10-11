@@ -157,6 +157,15 @@ class Simulation(object):
 
         self.logger.log_time_step(self.time_step_counter, self)
 
+    def total_infected_list(self):
+        inf = []
+        for person in self.population:
+            if person.infection and person.is_alive:
+                inf.append(person)
+
+        return inf
+
+
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an
         interaction. It assumes that only living people are passed in as parameters.
@@ -181,7 +190,7 @@ class Simulation(object):
         elif random_person.infection != None:
             self.logger.log_interaction(person, random_person, True, False, False)
 
-     def did_survive(self, person):
+    def did_survive(self, person):
 
         is_alive = person.did_survive_infection()
         if is_alive:
@@ -193,7 +202,7 @@ class Simulation(object):
         self.logger.log_infection_survival(person, is_alive)
 
 
-     def _infect_newly_infected(self):
+    def _infect_newly_infected(self):
         ''' This method should iterate through the list of ._id stored in self.newly_infected
         and update each Person object with the disease. '''
 
