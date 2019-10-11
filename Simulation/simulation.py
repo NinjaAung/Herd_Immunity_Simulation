@@ -164,24 +164,23 @@ class Simulation(object):
             person1 (person): The initial infected person
             random_person (person): The person that person1 interacts with.
         '''
-        # Assert statements are included to make sure that only living people are passed
-        # in as params
+
         assert person.is_alive == True
         assert random_person.is_alive == True
 
-        # TODO: Finish this method.
-        #  The possible cases you'll need to cover are listed below:
-            # random_person is vaccinated:
-            #     nothing happens to random person.
-            # random_person is already infected:
-            #     nothing happens to random person.
-            # random_person is healthy, but unvaccinated:
-            #     generate a random number between 0 and 1.  If that number is smaller
-            #     than repro_rate, random_person's ID should be appended to
-            #     Simulation object's newly_infected array, so that their .infected
-            #     attribute can be changed to True at the end of the time step.
-        # TODO: Call slogger method during this method.
-        pass
+        if random_person.is_vaccinated == False and random_person.infection == None and random_person._id not in self.newly_infected:
+            random_person.infection = self.virus
+            inf_chance = random.random()
+            if inf_chance <= self.virus.repro_rate:
+                self.newly_infected.append(random_person._id)
+                self.logger.log_interaction(person, random_person, True, False, True)
+                self.current_infected += 1
+                self.total_infected += 1
+        elif random_person.is_vaccinated == True:
+            self.logger.log_interaction(person, random_person, False , True, False)
+        elif random_person.infection != None:
+            self.logger.log_interaction(person, random_person, True, False, False)
+
 
     def _infect_newly_infected(self):
         ''' This method should iterate through the list of ._id stored in self.newly_infected
