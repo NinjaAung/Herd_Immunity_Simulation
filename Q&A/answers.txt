@@ -1,0 +1,11 @@
+Answers:
+1. Inputs given in the ebola simulation were:
+    Population size: 100
+    Vaccination Percentage: 90%
+    Virus Name:  Ebola
+    Mortality Rate: 70%
+    Reproduction Rate: 25%
+    People Initially Infected: 10
+2. percentage of the population became infected before the virus burned out
+3. 70% of the population died from the virus
+4. 21

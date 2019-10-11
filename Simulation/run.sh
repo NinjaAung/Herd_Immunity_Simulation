@@ -1,6 +1,3 @@
-
-python3 simulation.py {population size} {vacc_percentage} {virus_name} {mortality_rate} {repro_rate} {number of people initially infected}
-
 popsize=
 vaccper=
 name=
