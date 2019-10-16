@@ -23,14 +23,7 @@ class Logger(object):
         '''
 
         with open(self.file_name, 'w') as f:
-                log_file_msg = f"""
-                ___MetaData___
-                Population Size: {pop_size}
-                Vaccination Percentage: {vacc_percentage*100}%
-                Virus: {virus_name}
-                Mortality Rate: {mortality_rate*100}%
-                Basic Reproduction Number: {basic_repro_num*100}%\n
-                ____Simulation____\n"""
+                log_file_msg = f"""___MetaData___\nPopulation Size: {pop_size}\nVaccination Percentage: {vacc_percentage*100}%\nVirus: {virus_name}\nMortality Rate: {mortality_rate*100}%\nBasic Reproduction Number: {basic_repro_num*100}%\n\n____Simulation____\n\n"""
                 f.write(log_file_msg)
 
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
@@ -60,6 +53,7 @@ class Logger(object):
                 else:
                     log_file_msg = f"\t[FAIL]: {person._id} : {random_person._id} resisted virus [RESITANCE]\n"
                     f.write(log_file_msg)
+        f.close()
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -75,7 +69,7 @@ class Logger(object):
                 log_file_msg = f"[Dead]: {person._id}\n"
                 f.write(log_file_msg)
 
-    def log_time_step(self, time_step_number):
+    def log_time_step(self, time_step_number, sim_data):
         ''' STRETCH CHALLENGE DETAILS:
         If you choose to extend this method, the format of the summary statistics logged
         are up to you.
@@ -87,6 +81,11 @@ class Logger(object):
         The format of this log should be:
             "Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
         '''
+        init_dead = sim_data.total_dead 
+        newly_dead = sim_data.total_dead - init_dead
+        init_infected = sim_data.total_infected
+        newly_infected = sim_data.total_infected - init_infected
+
         with open(self.file_name, 'a') as f:
-            time_step_msg = f"Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
+            time_step_msg = f"\n\nTime step {time_step_number} ended, beginning {time_step_number + 1}\nNumber of people Infected: {newly_infected}\nNewly Dead: {newly_dead}\nTotal Dead: {sim_data.total_dead}\nTotal Infected: {sim_data.total_infected}\ntotal Vaccinated: {sim_data.total_vacc}\ntotal pop alive: {sim_data.pop_size - sim_data.total_dead}\n"
             f.write(time_step_msg)

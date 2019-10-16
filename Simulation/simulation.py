@@ -95,9 +95,10 @@ class Simulation(object):
         # Returns a Boolean.
 
         if self.total_vacc + self.total_dead >= self.pop_size_init:
-            should_continue = False
+            should_continue = False 
         else:
             should_continue = True
+
         return should_continue
 
 
@@ -134,7 +135,6 @@ class Simulation(object):
                 increment interaction counter by 1.
             '''
         total_inf = self.total_infected_list()
-        print(len(total_inf))
         for person in total_inf:
             # print(len(total_inf))
             if person.is_alive == True and person.infection:
@@ -145,6 +145,7 @@ class Simulation(object):
                         self.interaction(person, random_person)
                         interactions += 1
             self.did_survive(person)
+                        
         self._infect_newly_infected()
         self.logger.log_time_step(self.time_step_counter, self)
 
@@ -191,11 +192,9 @@ class Simulation(object):
     def _infect_newly_infected(self):
         ''' This method should iterate through the list of ._id stored in self.newly_infected
         and update each Person object with the disease. '''
-        # Call this method at the end of every time step and infect each Person
         for person in self.population:
             if person._id in self.newly_infected:
                 person.infection = self.virus
-        # reset self.newly_infected back to an empty list.
         self.newly_infected = []
 
 if __name__ == "__main__":
@@ -213,6 +212,5 @@ if __name__ == "__main__":
         initial_infected = 1
     virus = Virus(name, repro_rate, mortality_rate)
     sim = Simulation(pop_size, vacc_percentage, virus, initial_infected)
-    # sim.test_time_step()
 
     sim.run()
