@@ -39,19 +39,19 @@ class Logger(object):
             "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
         with open(self.file_name, 'a') as f:
-            
+
             if did_infect and not random_person_vacc and not random_person_sick:
-                log_file_msg = f"[Success]: {person._id} infected {random_person._id}.\n"
+                log_file_msg = f"\t[Success]: {person._id} infected {random_person._id}.\n"
                 f.write(log_file_msg)
             elif not did_infect:
                 if random_person_vacc:
-                    log_file_msg = f"[Fail]: {person._id} : {random_person._id} is [VACCINATED]\n"
+                    log_file_msg = f"\t[Fail]: {person._id} : {random_person._id} is [VACCINATED]\n"
                     f.write(log_file_msg)
                 elif random_person_sick:
-                    log_file_msg = f"[Fail]: {person._id} : {random_person._id} is already [SICK]\n"
+                    log_file_msg = f"\t[Fail]: {person._id} : {random_person._id} is [SICK]\n"
                     f.write(log_file_msg)
                 else:
-                    log_file_msg = f"[FAIL]: {person._id} : {random_person._id} [RESISTED]\n"
+                    log_file_msg = f"\t[FAIL]: {person._id} : {random_person._id} resisted virus [RESITANCE]\n"
                     f.write(log_file_msg)
         f.close()
 

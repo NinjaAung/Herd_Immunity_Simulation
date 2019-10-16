@@ -50,7 +50,11 @@ During every time step of the simulation, every sick person should randomly inte
     ```
     ex.
     ```
-    python3 simulation.py 100000 0.90 Ebola 0.70 0.25 10
+    python3 simulation.py 100 0.90 Ebola 0.70 0.25 10
+    ```
+    or
+    ```
+    ./run.sh 
     ```
 3. Enjoy the show of bits dying from an infection
 
